@@ -1,6 +1,6 @@
 [submodule "web"]
 	path = web
-	url = git@github.com:stassinopoulosari/its_classroom_lookup.git
+	url = git@github.com:stassinopoulosari/icl_web.git
 [submodule "data"]
 	path = data
 	url = git@github.com:stassinopoulosari/icl_data.git
