@@ -14,6 +14,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SCRIPT_DIR/data &&
 export ICLTERM=$ICLTERM &&
 deno task classrooms:scrape-to-file &&
+DATETIME=`date -Iseconds` &&
 INPATH=$SCRIPT_DIR/data/classrooms/data/classrooms-$ICLTERM-full.txt &&
 OUTPATH=$SCRIPT_DIR/web/source/classrooms-$ICLTERM-full.txt &&
 cp $INPATH $OUTPATH &&
@@ -23,7 +24,14 @@ node $SCRIPT_DIR/replacePath.js $HTMLPATH $OUTPATH $TXTHTMLPATH $ICLTERM &&
 cd $SCRIPT_DIR/web &&
 BRANCH=`git branch --show-current` &&
 git checkout main &&
-git add . &&
-git commit &&
+git add $HTML_PATH $OUTPATH &&
+git commit -m "Build for $ICLTERM at $DATETIME" &&
+git push origin main &&
+git checkout $BRANCH &&
+cd $SCRIPT_DIR &&
+BRANCH=`git branch --show-current` &&
+git checkout main &&
+git add web &&
+git commit -m "Update commit for web at $DATETIME" &&
 git push origin main &&
 git checkout $BRANCH
