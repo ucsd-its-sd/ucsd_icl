@@ -15,7 +15,10 @@ NOPUSH=${NOPUSH-'0'}
 NOBUILD=${NOBUILD-'0'}
 # We need the term for classes as well as a good directory for this file
 ICLTERM=${ICLTERM:-$1}
-SCRIPT_DIR=${SCRIPT_DIR:-${ICLPATH:-$1}}
+SCRIPT_DIR=${SCRIPT_DIR:-${ICL_PATH:-$1}}
+# Get the build date/time
+# Get the datetime before build for the commit name
+DATETIME=`date -Iseconds`
 
 if [ -z "$ICLTERM" ]
 then
@@ -48,8 +51,6 @@ if [ "$NOBUILD" = "0" ]; then
     # Build the actual classroom file
     ICLTERM="$ICLTERM" deno task classrooms:scrape-to-file
 fi
-# Get the datetime after build for the commit name
-DATETIME=`date -Iseconds`
 # Copy the text file with the classroom data
 INPATH="$SCRIPT_DIR/data/classrooms/data/classrooms-$ICLTERM-full.txt"
 OUTPATH="$SCRIPT_DIR/web/source/classrooms-$ICLTERM-full.txt"
