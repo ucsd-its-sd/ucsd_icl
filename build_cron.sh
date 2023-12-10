@@ -51,6 +51,15 @@ if [ "$NOBUILD" = "0" ]; then
     # Build the actual classroom file
     ICLTERM="$ICLTERM" deno task classrooms:scrape-to-file
 fi
+# Pull the latest version of the web before copying the output file.
+cd $SCRIPT_DIR/web
+# Change the branch if it's not already on the correct one
+BRANCH=`git branch --show-current`
+if [ "$BRANCH" != "$WEB_BRANCH" ]; then
+        git checkout $WEB_BRANCH
+fi
+# Move back to the data directory and copy the data files
+cd $SCRIPT_DIR/data
 # Copy the text file with the classroom data
 INPATH="$SCRIPT_DIR/data/classrooms/data/classrooms-$ICLTERM-full.txt"
 OUTPATH="$SCRIPT_DIR/web/source/classrooms-$ICLTERM-full.txt"
@@ -61,11 +70,6 @@ TXTHTMLPATH="./source/classrooms-$ICLTERM-full.txt"
 node $SCRIPT_DIR/replacePath.js $HTMLPATH $OUTPATH $TXTHTMLPATH $ICLTERM
 # Move into the web directory
 cd $SCRIPT_DIR/web
-# Change the branch if it's not already on the correct one
-BRANCH=`git branch --show-current`
-if [ "$BRANCH" != "$WEB_BRANCH" ]; then
-        git checkout $WEB_BRANCH
-fi
 # Change ONLY the HTML and text files
 git add $HTMLPATH
 git add $OUTPATH
