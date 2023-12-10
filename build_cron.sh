@@ -58,6 +58,7 @@ BRANCH=`git branch --show-current`
 if [ "$BRANCH" != "$WEB_BRANCH" ]; then
         git checkout $WEB_BRANCH
 fi
+git pull $WEB_REMOTE $WEB_BRANCH
 # Move back to the data directory and copy the data files
 cd $SCRIPT_DIR/data
 # Copy the text file with the classroom data
