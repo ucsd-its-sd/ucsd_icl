@@ -63,11 +63,11 @@ git pull $WEB_REMOTE $WEB_BRANCH
 cd $SCRIPT_DIR/data
 # Copy the text file with the classroom data
 INPATH="$SCRIPT_DIR/data/classrooms/data/classrooms-$ICLTERM-full.txt"
-OUTPATH="$SCRIPT_DIR/web/source/classrooms-$ICLTERM-full.txt"
+OUTPATH="$SCRIPT_DIR/web/source/classrooms-full.txt"
 cp $INPATH $OUTPATH
 # Replace the text file we're using as the source in the HTML file using a node script in the same directory
 HTMLPATH="$SCRIPT_DIR/web/index.html"
-TXTHTMLPATH="./source/classrooms-$ICLTERM-full.txt"
+TXTHTMLPATH="./source/classrooms-full.txt"
 node $SCRIPT_DIR/replacePath.js $HTMLPATH $OUTPATH $TXTHTMLPATH $ICLTERM
 # Move into the web directory
 cd $SCRIPT_DIR/web
