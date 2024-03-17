@@ -24,30 +24,30 @@ fs.readFile(txtPath, { encoding: "utf8" }).then((txtContents) => {
   );
 });
 
-fs.readFile(htmlPath, { encoding: "utf8" }).then((htmlContents) => {
-  var nextLineReplace = false;
-  fs.writeFile(
-    htmlPath,
-    htmlContents
-      .split(/\n|\r/g)
-      .map((line) => {
-        if (nextLineReplace) {
-          console.log(
-            "replace line: `" +
-              line +
-              '` with `    window.icl.CURRENT_PATH = "' +
-              txtHTMLPath +
-              '";`',
-          );
-          nextLineReplace = false;
-          return '    window.icl.CURRENT_PATH = "' + txtHTMLPath + '";';
-        }
-        if (line.includes("MARK-NEXTLINEPATH")) {
-          console.log("replace next line");
-          nextLineReplace = true;
-        }
-        return line;
-      })
-      .join("\n"),
-  );
-});
+// fs.readFile(htmlPath, { encoding: "utf8" }).then((htmlContents) => {
+//   var nextLineReplace = false;
+//   fs.writeFile(
+//     htmlPath,
+//     htmlContents
+//       .split(/\n|\r/g)
+//       .map((line) => {
+//         if (nextLineReplace) {
+//           console.log(
+//             "replace line: `" +
+//               line +
+//               '` with `    window.icl.CURRENT_PATH = "' +
+//               txtHTMLPath +
+//               '";`',
+//           );
+//           nextLineReplace = false;
+//           return '    window.icl.CURRENT_PATH = "' + txtHTMLPath + '";';
+//         }
+//         if (line.includes("MARK-NEXTLINEPATH")) {
+//           console.log("replace next line");
+//           nextLineReplace = true;
+//         }
+// return line;
+//       })
+//       .join("\n"),
+//   );
+// });
