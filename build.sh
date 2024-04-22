@@ -15,7 +15,7 @@ NOPUSH=${NOPUSH-'0'}
 NOBUILD=${NOBUILD-'0'}
 # We need the term for classes as well as a good directory for this file
 ICLTERM=${ICLTERM:-$1}
-SCRIPT_DIR=${SCRIPT_DIR:-${ICL_PATH:-$2}}
+SCRIPT_DIR=${SCRIPT_DIR:-${ICL_PATH:-$1}}
 # Get the build date/time
 # Get the datetime before build for the commit name
 DATETIME=`date -Iseconds`
@@ -64,7 +64,9 @@ cd $SCRIPT_DIR/data
 # Copy the text file with the classroom data
 INPATH="$SCRIPT_DIR/data/classrooms/data/classrooms-$ICLTERM-full.txt"
 OUTPATH="$SCRIPT_DIR/web/source/classrooms-full.txt"
-cp $INPATH $OUTPATH
+if [ "$NOBUILD" = "0" ]; then
+	cp $INPATH $OUTPATH
+fi
 # Replace the text file we're using as the source in the HTML file using a node script in the same directory
 HTMLPATH="$SCRIPT_DIR/web/index.html"
 TXTHTMLPATH="./source/classrooms-full.txt"
