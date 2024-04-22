@@ -41,7 +41,7 @@ jobs:
           node-version: 'v20.9.0'
       - name: Check directory
         run: ls
-      # - name: Run build.sh
-      #   run: |
-      #     NOBUILD=1 GIT_PATH=`which git` DENO_PATH=`which deno` NODE_PATH=`which node` ICL_PATH=. ICLTERM="SP24" sh ./build_cron.sh
+      - name: Run build.sh
+        run: |
+          NOBUILD=1 GIT_PATH=`which git` DENO_PATH=`which deno` NODE_PATH=`which node` ICL_PATH=. ICLTERM="SP24" sh ./build_cron.sh
         
