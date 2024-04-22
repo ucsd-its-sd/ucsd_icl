@@ -18,19 +18,19 @@ jobs:
       - name: Set default branch name to `main`
         run: git config --global init.defaultBranch main
       - name: Check out main repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
         with: 
           token: ${{ secrets.GH_TOKEN }}
         # with:
         #   submodules: 'true'
       - name: Check out `data`
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
         with:
           repository: 'ucsd-its-sd/icl_data'
           path: data
           token: ${{ secrets.GH_TOKEN }}
       - name: Check out `web`
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
         with:
           repository: 'ucsd-its-sd/icl_web'
           path: web
