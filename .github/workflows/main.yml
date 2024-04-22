@@ -10,13 +10,26 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - name: Check out main repo
+        uses: actions/checkout@main
+        # with:
+        #   submodules: 'true'
+      - name: Check out `data`
+        uses: actions/checkout@main
         with:
-          submodules: 'true'
-      - uses: denoland/setup-deno@v1
+          repository: 'ucsd-its-sd/icl_data'
+          path: data
+      - name: Check out `web`
+        uses: actions/checkout@main
+        with:
+          repository: 'ucsd-its-sd/icl_web'
+          path: web
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
         with:
           deno-version: v1.42.4
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 'v20.9.0'
       - name: Run build.sh
