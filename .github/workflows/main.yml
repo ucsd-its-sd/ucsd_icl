@@ -16,7 +16,10 @@ jobs:
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.42.4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'v20.9.0'
       - name: Run build.sh
         run: |
-          ICL_PATH=. ICLTERM="SP24" sh ./build_cron.sh
+          GIT_PATH=`which git` DENO_PATH=`which deno` NODE_PATH=`which node` ICL_PATH=. ICLTERM="SP24" sh ./build_cron.sh
         
