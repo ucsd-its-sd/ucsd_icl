@@ -11,11 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
+        with:
+          submodules: 'true'
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.42.4
       - name: Run build.sh
         run: |
-          git submodule sync
           ICL_PATH=. ICLTERM="SP24" sh ./build_cron.sh
         
