@@ -43,5 +43,5 @@ jobs:
         run: ls
       - name: Run build.sh
         run: |
-          NOBUILD=1 GIT_PATH=`which git` DENO_PATH=`which deno` NODE_PATH=`which node` ICL_PATH=. ICLTERM="SP24" sh ./build_cron.sh
+          NOBUILD=1 GIT_PATH=`which git` DENO_PATH=`which deno` NODE_PATH=`which node` ICL_PATH=`pwd` ICLTERM="SP24" sh ./build_cron.sh
         
