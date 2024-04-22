@@ -56,5 +56,5 @@ jobs:
           NODE_PATH=`which node` \
           ICL_PATH=`pwd` \
           ICLTERM="SP24" \
-          sh ./build_cron.sh
+          sh ./build.sh
         
