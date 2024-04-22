@@ -49,5 +49,12 @@ jobs:
         run: |
           git config --global user.email "john-bot@ucsd.it"
           git config --global user.name "John Bot"
-          NOBUILD=1 GIT_PATH=`which git` DENO_PATH=`which deno` NODE_PATH=`which node` ICL_PATH=`pwd` ICLTERM="SP24" sh ./build_cron.sh
+          NOBUILD=${{ github.event.inputs.NOBUILD ? "1" : "0" }} \
+          NOPUSH=${{ github.event.inputs.NOPUSH ? "1" : "0" }} \
+          GIT_PATH=`which git` \
+          DENO_PATH=`which deno` \
+          NODE_PATH=`which node` \
+          ICL_PATH=`pwd` \
+          ICLTERM="SP24" \
+          sh ./build_cron.sh
         
