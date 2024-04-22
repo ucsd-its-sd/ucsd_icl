@@ -13,5 +13,5 @@ jobs:
       - uses: actions/checkout@main
       - name: Run build.sh
         run: |
-          ICL_PATH=. && ICLTERM="SP24" && sh ./build_cron.sh
+          ICL_PATH=. ICLTERM="SP24" sh ./build_cron.sh
         
