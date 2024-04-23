@@ -14,6 +14,9 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    env: 
+      NOBUILD: ${{ fromJSON('["0", "1"]')[github.event.inputs.NOBUILD] }}
+      NOPUSH: ${{ fromJSON('["0", "1"]')[github.event.inputs.NOPUSH] }
     steps:
       - name: Set default branch name to `main`
         run: git config --global init.defaultBranch main
@@ -49,7 +52,7 @@ jobs:
         run: |
           git config --global user.email "github-actions@ucsd.it"
           git config --global user.name "Sunny"
-          echo ${{ fromJSON('["NOBUILD=0", "NOBUILD=1"]')[github.event.inputs.NOBUILD] }} ${{ fromJSON('["NOPUSH=0", "NOPUSH=1"]')[github.event.inputs.NOPUSH] }}
+          echo $NOBUILD $NOPUSH
           ${{ fromJSON('["NOBUILD=0", "NOBUILD=1"]')[github.event.inputs.NOBUILD] }} ${{ fromJSON('["NOPUSH=0", "NOPUSH=1"]')[github.event.inputs.NOPUSH] }} \
           GIT_PATH=`which git` \
           DENO_PATH=`which deno` \
