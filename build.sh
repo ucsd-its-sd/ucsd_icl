@@ -67,14 +67,12 @@ OUTPATH="$SCRIPT_DIR/web/source/classrooms-full.txt"
 if [ "$NOBUILD" = "0" ]; then
 	cp $INPATH $OUTPATH
 fi
-# Replace the text file we're using as the source in the HTML file using a node script in the same directory
+# Add the `info` class to the classes file
 HTMLPATH="$SCRIPT_DIR/web/index.html"
-TXTHTMLPATH="./source/classrooms-full.txt"
-node $SCRIPT_DIR/replacePath.js $HTMLPATH $OUTPATH $TXTHTMLPATH $ICLTERM
+node $SCRIPT_DIR/addClassInfo.js $OUTPATH $ICLTERM
 # Move into the web directory
 cd $SCRIPT_DIR/web
-# Change ONLY the HTML and text files
-git add $HTMLPATH
+# Change the text file
 git add $OUTPATH
 # Make a new commit for this build
 git commit -m "Build for $ICLTERM at $DATETIME"
