@@ -1,8 +1,6 @@
 const fs = require("fs").promises,
-  htmlPath = process.argv[2],
-  txtPath = process.argv[3],
-  txtHTMLPath = process.argv[4],
-  term = process.argv[5];
+  txtPath = process.argv[2],
+  term = process.argv[3];
 
 console.log(htmlPath, txtPath, term);
 
