@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       NOBUILD: ${{ fromJSON('["0", "1"]')[github.event.inputs.NOBUILD] }}
-      NOPUSH: ${{ fromJSON('["0", "1"]')[github.event.inputs.NOPUSH] }
+      NOPUSH: ${{ fromJSON('["0", "1"]')[github.event.inputs.NOPUSH] }}
     steps:
       - name: Set default branch name to `main`
         run: git config --global init.defaultBranch main
