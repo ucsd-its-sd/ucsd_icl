@@ -50,7 +50,7 @@ jobs:
           git config --global user.email "github-actions@ucsd.it"
           git config --global user.name "Sunny"
           echo ${{ fromJSON('["NOPUSH=\'0\'", "NOPUSH=\'1\'"]')[github.event.inputs.NOPUSH] }}
-          ${{ fromJSON('["NOBUILD=\'0\'", "NOBUILD=\'1\'"]')[github.event.inputs.NOBUILD] }} \
+          ${{ fromJSON('["NOBUILD=\\'0\\'", "NOBUILD=\\'1\\'"]')[github.event.inputs.NOBUILD] }} \
           ${{ fromJSON('["NOPUSH=\'0\'", "NOPUSH=\'1\'"]')[github.event.inputs.NOPUSH] }} \
           GIT_PATH=`which git` \
           DENO_PATH=`which deno` \
