@@ -13,10 +13,6 @@ ICL_REMOTE=${ICL_REMOTE:-'origin'}
 # Some flags for testing (NOPUSH or NOBUILD can be equal to 1 to skip pushing or building
 NOPUSH=${NOPUSH-'0'}
 NOBUILD=${NOBUILD-'0'}
-echo "\$NOBUILD - $NOBUILD"
-echo "\$NOPUSH - $NOPUSH"
-NOBUILD=1
-NOPUSH=1
 # We need the term for classes as well as a good directory for this file
 ICLTERM=${ICLTERM:-$1}
 SCRIPT_DIR=${SCRIPT_DIR:-${ICL_PATH:-$1}}
