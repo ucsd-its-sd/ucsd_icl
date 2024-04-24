@@ -53,7 +53,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'v20.9.0'
-      - name: Setup environment variables and PATH
+      - name: Set Git config
+        run: |
+          git config --global user.email "github-actions@ucsd.it"
+          git config --global user.name "Sunny"
+      - name: Run build.sh
         run: |
           export NOBUILD=${NOBUILD:-0}
           export NOPUSH=${NOPUSH:-0}
@@ -62,12 +66,5 @@ jobs:
           export NODE_PATH=`which node`
           export ICL_PATH=`pwd`
           export ICLTERM=$ICLTERM
-          echo env:
-          export
-      - name: Set Git config
-        run: |
-          git config --global user.email "github-actions@ucsd.it"
-          git config --global user.name "Sunny"
-      - name: Run build.sh
-        run: sh ./build.sh
+          sh ./build.sh
         
