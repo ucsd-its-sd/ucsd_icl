@@ -23,6 +23,7 @@ jobs:
     env: 
       NOBUILD: ${{ github.event.inputs.NOBUILD }}
       NOPUSH: ${{ github.event.inputs.NOPUSH }}
+      ICLTERM: "SP24"
     steps:
       - name: Set default branch name to `main`
         run: git config --global init.defaultBranch main
@@ -52,19 +53,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'v20.9.0'
-      - name: Check directory
-        run: ls
-      - name: Run build.sh
+      - name: Setup environment variables and PATH
         run: |
-          git config --global user.email "github-actions@ucsd.it"
-          git config --global user.name "Sunny"
           export NOBUILD=${NOBUILD:-0}
           export NOPUSH=${NOPUSH:-0}
-          echo $NOBUILD $NOPUSH
-          GIT_PATH=`which git` \
-          DENO_PATH=`which deno` \
-          NODE_PATH=`which node` \
-          ICL_PATH=`pwd` \
-          ICLTERM="SP24" \
-          sh ./build.sh
+          export GIT_PATH=`which git`
+          export DENO_PATH=`which deno`
+          export NODE_PATH=`which node`
+          export ICL_PATH=`pwd`
+          export ICLTERM=$ICLTERM
+          echo env:
+          export
+      - name: Set Git config
+          git config --global user.email "github-actions@ucsd.it"
+          git config --global user.name "Sunny"
+      - name: Run build.sh
+        run: sh ./build.sh
         
