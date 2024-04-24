@@ -65,6 +65,7 @@ jobs:
           echo env:
           export
       - name: Set Git config
+        run: |
           git config --global user.email "github-actions@ucsd.it"
           git config --global user.name "Sunny"
       - name: Run build.sh
