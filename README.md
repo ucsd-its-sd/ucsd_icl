@@ -20,7 +20,7 @@ Usage:
 `sh ./build.sh [ICLTERM] [SCRIPT_DIR]`
 
 - `ICLTERM`: eg. SP24 or WI95
-- `SCRIPT_DIR`: This will usually be `.` or `\`pwd\``
+- `SCRIPT_DIR`: This will usually be `.` or `` `pwd` ``
 
 Flags and environment variables:
 - `$ICLTERM`: The same as above
