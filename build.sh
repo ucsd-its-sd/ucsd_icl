@@ -15,7 +15,7 @@ NOPUSH=${NOPUSH-'0'}
 NOBUILD=${NOBUILD-'0'}
 # We need the term for classes as well as a good directory for this file
 ICLTERM=${ICLTERM:-$1}
-SCRIPT_DIR=${SCRIPT_DIR:-${ICL_PATH:-$2}}
+SCRIPT_DIR=${SCRIPT_DIR:-${ICL_PATH:-$1}}
 # Get the build date/time
 # Get the datetime before build for the commit name
 DATETIME=`date -Iseconds`
@@ -64,15 +64,15 @@ cd $SCRIPT_DIR/data
 # Copy the text file with the classroom data
 INPATH="$SCRIPT_DIR/data/classrooms/data/classrooms-$ICLTERM-full.txt"
 OUTPATH="$SCRIPT_DIR/web/source/classrooms-full.txt"
-cp $INPATH $OUTPATH
-# Replace the text file we're using as the source in the HTML file using a node script in the same directory
+if [ "$NOBUILD" = "0" ]; then
+	cp $INPATH $OUTPATH
+fi
+# Add the `info` class to the classes file
 HTMLPATH="$SCRIPT_DIR/web/index.html"
-TXTHTMLPATH="./source/classrooms-full.txt"
-node $SCRIPT_DIR/replacePath.js $HTMLPATH $OUTPATH $TXTHTMLPATH $ICLTERM
+node $SCRIPT_DIR/addClassInfo.js $OUTPATH $ICLTERM
 # Move into the web directory
 cd $SCRIPT_DIR/web
-# Change ONLY the HTML and text files
-git add $HTMLPATH
+# Change the text file
 git add $OUTPATH
 # Make a new commit for this build
 git commit -m "Build for $ICLTERM at $DATETIME"
