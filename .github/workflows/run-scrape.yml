@@ -23,7 +23,7 @@ jobs:
     env: 
       NOBUILD: ${{ github.event.inputs.NOBUILD }}
       NOPUSH: ${{ github.event.inputs.NOPUSH }}
-      ICLTERM: "SP24"
+      ICLTERM: "S124"
     steps:
       - name: Set default branch name to `main`
         run: git config --global init.defaultBranch main
