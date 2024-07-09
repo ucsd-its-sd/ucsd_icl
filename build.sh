@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Script to automatically build classrooms, safe(-ish?) to use with cron.
 source ./config.sh
 

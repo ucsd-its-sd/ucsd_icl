@@ -63,4 +63,4 @@ jobs:
           export GIT_PATH=`which git`
           export DENO_PATH=`which deno`
           export NODE_PATH=`which node`
-          sh ./build.sh
+          bash ./build.sh
