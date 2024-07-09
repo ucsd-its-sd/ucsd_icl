@@ -1,10 +1,15 @@
 #!/bin/sh
 # Script to automatically build classrooms, safe(-ish?) to use with cron.
+source ./config.sh
 
 # Some of these files aren't included in the path for cron.
-alias git=${GIT_PATH:-'/usr/bin/git'}
-alias node=${NODE_PATH:-'/usr/local/bin/node'}
-alias deno=${DENO_PATH:-'~/.deno/bin/deno'}
+GITPATH=`command -v git`
+NODEPATH=`command -v node`
+DENOPATH=`command -v deno`
+alias git=${GITPATH:-${GIT_PATH:-'/usr/bin/git'}}
+alias node=${NODEPATH:-${NODE_PATH:-'/usr/local/bin/node'}}
+alias deno=${DENOPATH:-${DENO_PATH:-'~/.deno/bin/deno'}}
+
 # In case you want to use gh-pages or something, idk
 WEB_BRANCH=${WEB_BRANCH:-'main'}
 ICL_BRANCH=${ICL_BRANCH:-'main'}
@@ -15,10 +20,12 @@ NOPUSH=${NOPUSH-'0'}
 NOBUILD=${NOBUILD-'0'}
 # We need the term for classes as well as a good directory for this file
 ICLTERM=${ICLTERM:-$1}
-SCRIPT_DIR=${SCRIPT_DIR:-${ICL_PATH:-$1}}
+ICLFINALS=${ICLFINALS:-'0'}
+SCRIPT_DIR=`temp=$( realpath "$0"  ) && dirname "$temp"`
 # Get the build date/time
 # Get the datetime before build for the commit name
 DATETIME=`date -Iseconds`
+
 
 if [ -z "$ICLTERM" ]
 then
@@ -66,6 +73,11 @@ INPATH="$SCRIPT_DIR/data/classrooms/data/classrooms-$ICLTERM-full.txt"
 OUTPATH="$SCRIPT_DIR/web/source/classrooms-full.txt"
 if [ "$NOBUILD" = "0" ]; then
 	cp $INPATH $OUTPATH
+	if [ "$ICLFINALS" = "0" ]; then
+	   echo FALSE > $SCRIPT_DIR/web/source/FINALS
+	else
+	   echo TRUE > $SCRIPT_DIR/web/source/FINALS
+	fi
 fi
 # Add the `info` class to the classes file
 HTMLPATH="$SCRIPT_DIR/web/index.html"
