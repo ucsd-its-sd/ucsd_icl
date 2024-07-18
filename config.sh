@@ -1,3 +1,3 @@
 #!/bin/sh
-export ICLTERM='S124'
+export ICLTERM='S224'
 export ICLFINALS=0
