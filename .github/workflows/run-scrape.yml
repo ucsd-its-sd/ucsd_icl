@@ -1,5 +1,5 @@
 name: Scrape Classroom Data/Deploy ICL
-run-name: Scrape & deploy by @${{ github.actor }}
+run-name: Scrape & deploy by @ucsd-itslead
 on:
   workflow_dispatch:
     inputs:
