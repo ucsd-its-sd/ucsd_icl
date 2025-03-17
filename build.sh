@@ -87,6 +87,7 @@ node $SCRIPT_DIR/addClassInfo.js $OUTPATH $ICLTERM
 cd $SCRIPT_DIR/web
 # Change the text file
 git add $OUTPATH
+git add source/FINALS
 # Make a new commit for this build
 git commit -m "Build for $ICLTERM at $DATETIME"
 # Push to origin if NOPUSH is not set
