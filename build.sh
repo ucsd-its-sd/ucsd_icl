@@ -26,6 +26,7 @@ SCRIPT_DIR=`temp=$( realpath "$0"  ) && dirname "$temp"`
 # Get the datetime before build for the commit name
 DATETIME=`date -Iseconds`
 
+echo "CONFIG: FINALS -> $ICLFINALS, TERM -> $ICLTERM"
 
 if [ -z "$ICLTERM" ]
 then
