@@ -16,6 +16,10 @@ jobs:
               uses: actions/checkout@v4
               with:
                   token: ${{ secrets.GH_TOKEN }}
+            - name: Set Git config
+              run: |
+                  git config --global user.email "itslead@ucsd.edu"
+                  git config --global user.name "Sunny"
             - name: Run `autoterm.sh`
               run: |
                   bash ./autoterm.sh
